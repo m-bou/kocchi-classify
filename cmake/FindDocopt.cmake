@@ -14,7 +14,7 @@ find_library(DOCOPT_LIBRARIES docopt)
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
     Docopt
-    DEFAULT_MSG
+    "Docopt not found"
     DOCOPT_INCLUDE_DIRS 
     DOCOPT_LIBRARIES
 )
