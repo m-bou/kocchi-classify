@@ -4,9 +4,12 @@
 #include <QDebug>
 
 #include <Eigen/Dense>
+#include <qdebug.h>
+#include <sstream>
+// #include <string>
+#include "pkg/Common.hpp"
 #include <ldaplusplus/LDA.hpp>
-
-
+#include <ldaplusplus/NumpyFormat.hpp>
 
 // #include <iostream>
 // #include <fstream>
@@ -40,8 +43,17 @@ int main(int argc, char *argv[])
 {
    QCoreApplication a(argc, argv);
    QString test= "AAA";
+   
+   std::istringstream i_test;
+   
+   Common::QStringtoStream(test, i_test);
+   Common::printStream(i_test);
 
-   qDebug() << test;
+   qDebug() << "iTest get number : " << i_test.gcount();
+
+   Eigen::Matrix<char, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor | Eigen::AutoAlign> doc= ldaplusplus::numpy_format::load<char>(i_test);
+
+   std::cout << doc;
 
    return a.exec();
 }
