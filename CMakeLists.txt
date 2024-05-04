@@ -21,6 +21,9 @@ find_package(Qt5 REQUIRED COMPONENTS Core Widgets REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 find_package(LDA++ REQUIRED)
 
+# find_package(Python COMPONENTS Interpreter Development)
+find_package(pybind11 REQUIRED)
+
 # Create the virtual environment
 execute_process(
     COMMAND python -m venv ${KOCCHI_BINARY_DIR}/${venv_name}
@@ -56,6 +59,7 @@ endif()
 include_directories(
     ${EIGEN_INCLUDE_DIRS}
     ${LDA_INCLUDE_DIRS}
+    ${PYBIND_INCLUDE_DIRS}
 )
 
 add_executable(classify
