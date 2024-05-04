@@ -1,3 +1,4 @@
+#include <pybind11/pybind11.h>
 #include <QCoreApplication>
 #include <QLocale>
 #include <QTranslator>
@@ -10,7 +11,6 @@
 #include "pkg/Common.hpp"
 #include <ldaplusplus/LDA.hpp>
 #include <ldaplusplus/NumpyFormat.hpp>
-#include <pybind11/pybind11.h>
 
 // #include <iostream>
 // #include <fstream>

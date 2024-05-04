@@ -16,13 +16,14 @@ set(KOCCHI_BINARY_DIR ${CMAKE_BINARY_DIR}/kocchi-classify)
 set(venv_name venv)
 
 
-# find_package(QT NAMES Qt5 COMPONENTS Core REQUIRED)
+find_package(Python COMPONENTS Interpreter Development)
+find_package(pybind11 REQUIRED)
+
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 find_package(LDA++ REQUIRED)
 
 # find_package(Python COMPONENTS Interpreter Development)
-find_package(pybind11 REQUIRED)
 
 # Create the virtual environment
 execute_process(
@@ -57,6 +58,7 @@ endif()
 
 # Bring the headers into the project
 include_directories(
+    ${Python_INCLUDE_DIRS}
     ${EIGEN_INCLUDE_DIRS}
     ${LDA_INCLUDE_DIRS}
     ${PYBIND_INCLUDE_DIRS}
@@ -73,5 +75,5 @@ set_target_properties(classify PROPERTIES
 )
 
 add_custom_target(CopyFiles DEPENDS ${KOCCHI_BINARY_DIR}/modules/tokenize.py)
-target_link_libraries(classify Qt5::Core Qt5::Widgets)
+target_link_libraries(classify Qt5::Core Qt5::Widgets ${Python_LIBRARIES})
 add_dependencies(classify CopyFiles)
