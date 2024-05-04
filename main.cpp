@@ -10,6 +10,7 @@
 #include "pkg/Common.hpp"
 #include <ldaplusplus/LDA.hpp>
 #include <ldaplusplus/NumpyFormat.hpp>
+#include <pybind11/pybind11.h>
 
 // #include <iostream>
 // #include <fstream>
