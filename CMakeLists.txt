@@ -36,7 +36,7 @@ if(venv_result)
 endif()
 
 execute_process(
-    COMMAND ${CMAKE_COMMAND} -E env "PATH=${KOCCHI_BINARY_DIR}/${venv_name}/bin:$ENV{PATH}" pip install scikit-learn
+    COMMAND ${CMAKE_COMMAND} -E env "PATH=${KOCCHI_BINARY_DIR}/${venv_name}/bin:$ENV{PATH}" pip install numpy scipy scikit-learn
     RESULT_VARIABLE pip_result
 )
 
@@ -45,15 +45,15 @@ if(pip_result)
 endif()
 
 file(MAKE_DIRECTORY ${KOCCHI_BINARY_DIR}/modules/)
-message(STATUS "Copying ${PROJECT_SOURCE_DIR}/modules/tokenize.py")
+message(STATUS "Copying ${PROJECT_SOURCE_DIR}/modules/tokenizer.py")
 
 execute_process(
-    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/modules/tokenize.py ${KOCCHI_BINARY_DIR}/modules/tokenize.py
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/modules/tokenizer.py ${KOCCHI_BINARY_DIR}/modules/tokenizer.py
     RESULT_VARIABLE copy_result
 )
 
 if(copy_result)
-    message(FATAL_ERROR "Failed to copy file ${PROJECT_SOURCE_DIR}/modules/tokenize.py > ${KOCCHI_BINARY_DIR}/modules/tokenize.py : ${copy_result}")
+    message(FATAL_ERROR "Failed to copy file ${PROJECT_SOURCE_DIR}/modules/tokenizer.py > ${KOCCHI_BINARY_DIR}/modules/tokenizer.py : ${copy_result}")
 endif()
 
 # Bring the headers into the project
@@ -71,9 +71,9 @@ add_executable(classify
 
 
 set_target_properties(classify PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${KOCCHI_BINARY_DIR}/bin
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
-add_custom_target(CopyFiles DEPENDS ${KOCCHI_BINARY_DIR}/modules/tokenize.py)
+add_custom_target(CopyFiles DEPENDS ${KOCCHI_BINARY_DIR}/modules/tokenizer.py)
 target_link_libraries(classify Qt5::Core Qt5::Widgets ${Python_LIBRARIES})
 add_dependencies(classify CopyFiles)
