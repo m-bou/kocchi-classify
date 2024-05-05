@@ -9,7 +9,9 @@
 #include <sstream>
 // #include <string>
 #include "pkg/Common.hpp"
+#include "pkg/classify.hpp"
 #include <ldaplusplus/LDA.hpp>
+#include <ldaplusplus/LDABuilder.hpp>
 #include <ldaplusplus/NumpyFormat.hpp>
 
 // #include <iostream>
@@ -43,18 +45,29 @@
 int main(int argc, char *argv[])
 {
    QCoreApplication a(argc, argv);
-   QString test= "AAA";
+   // QString test= "AAA";
    
-   std::istringstream i_test;
+   // std::istringstream i_test;
    
-   Common::QStringtoStream(test, i_test);
-   Common::printStream(i_test);
+   // Common::QStringtoStream(test, i_test);
+   // Common::printStream(i_test);
 
-   qDebug() << "iTest get number : " << i_test.gcount();
+   // qDebug() << "iTest get number : " << i_test.gcount();
 
-   Eigen::Matrix<char, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor | Eigen::AutoAlign> doc= ldaplusplus::numpy_format::load<char>(i_test);
+   // Eigen::Matrix<char, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor | Eigen::AutoAlign> doc= ldaplusplus::numpy_format::load<char>(i_test);
 
-   std::cout << doc;
+   // std::cout << doc;
+
+   // Eigen::MatrixXi X = Common::import("/home/mehdib/Documents/projets/topicz-scrapper/build/news.npy");
+   // Common::printMatrix(X);
+
+   Classify classify("/home/mehdib/Documents/projets/topicz-scrapper/build/news.npy");
+   classify.buildLDA();
+   classify.addListener();
+   
+   classify.train();
+   
+   classify.save_model("/home/mehdib/Documents/projets/topicz-scrapper/build/classify.npy");
 
    return a.exec();
 }

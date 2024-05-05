@@ -9,10 +9,15 @@
 #include <QDebug>
 #include <sstream>
 
-class Common{
+#include <ldaplusplus/NumpyFormat.hpp>
+
+class Common
+{
     public:
         static void     QStringtoStream(const QString, std::istringstream&);
         static void     printStream(std::istringstream&);
+        static Eigen::MatrixXi  import(std::string p);
+        static void printMatrix(Eigen::MatrixXi mat);
 };
 
 

@@ -67,6 +67,7 @@ include_directories(
 add_executable(classify
   main.cpp
   pkg/Common.cpp
+  pkg/classify.cpp
 )
 
 
@@ -75,5 +76,5 @@ set_target_properties(classify PROPERTIES
 )
 
 add_custom_target(CopyFiles DEPENDS ${KOCCHI_BINARY_DIR}/modules/tokenizer.py)
-target_link_libraries(classify Qt5::Core Qt5::Widgets ${Python_LIBRARIES})
+target_link_libraries(classify Qt5::Core Qt5::Widgets ${Python_LIBRARIES} ${LDA_LIBRARIES})
 add_dependencies(classify CopyFiles)

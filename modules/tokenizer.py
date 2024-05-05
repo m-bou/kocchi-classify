@@ -16,8 +16,8 @@ datas = tf_vectorizer.fit_transform(newsgroups.data)
 tf_datas = datas.T.toarray()
 vocabulary = tf_vectorizer.vocabulary_
 
-print("Shape : " + tf_datas.shape)
-print("Vocabulary : " + tf_vectorizer.vocabulary_)
+print("Shape : ", tf_datas.shape)
+print("Vocabulary : ", tf_vectorizer.vocabulary_)
 
 
 with open("news.npy", "wb") as f:
