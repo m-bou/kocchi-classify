@@ -1,7 +1,6 @@
 #ifndef classify_common_hpp
 #define classify_common_hpp
 
-#include <iostream>
 // #include "ldaplusplus/NumpyFormat.hpp"
 
 #include <QString>
@@ -10,6 +9,14 @@
 #include <sstream>
 
 #include <ldaplusplus/NumpyFormat.hpp>
+
+#ifndef NDEBUG
+#define PRINT_DEBUG(X) std::cout << X << std::endl
+#else
+#define PRINT_DEBUG(X) do {} while(0)
+#endif
+
+#define PRINT_ERROR(X) std::cout << X << std::endl
 
 class Common
 {
