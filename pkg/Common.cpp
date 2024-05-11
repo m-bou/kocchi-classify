@@ -1,5 +1,5 @@
 #include "Common.hpp"
-#include <sstream>
+#include <iostream>
 
 void Common::QStringtoStream(const QString qString, std::istringstream& s) {
     // Convert QString to QByteArray
