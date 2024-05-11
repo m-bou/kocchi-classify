@@ -4,6 +4,7 @@
 #include "ldaplusplus/LDABuilder.hpp"
 #include "ldaplusplus/Parameters.hpp"
 #include <ldaplusplus/events/ProgressEvents.hpp>
+#include <iostream>
 
 Classify::Classify(std::string p_data)
 : _lda(nullptr)
