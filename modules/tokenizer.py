@@ -20,5 +20,9 @@ print("Shape : ", tf_datas.shape)
 print("Vocabulary : ", tf_vectorizer.vocabulary_)
 
 
-with open("news.npy", "wb") as f:
+with open("input.npy", "wb") as f:
     np.save(f, tf_datas)
+
+with open('labels.txt', 'w') as file:
+    for label in vocabulary:
+        file.write(label + '\n')
