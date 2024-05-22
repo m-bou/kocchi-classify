@@ -26,23 +26,31 @@ find_package(LDA++ REQUIRED)
 # find_package(Python COMPONENTS Interpreter Development)
 
 # Create the virtual environment
-execute_process(
-    COMMAND python -m venv ${KOCCHI_BINARY_DIR}/${venv_name}
-    RESULT_VARIABLE venv_result
-)
 
-if(venv_result)
-    message(FATAL_ERROR "Failed to create virtual environment")
+set(VENV_NAME venv)
+find_path(VENV_PATH venv_path ${KOCCHI_BINARY_DIR}/${venv_name})
+
+if(VENV_PATH-NOTFOUND)
+    execute_process(
+        COMMAND python -m ${VENV_NAME} ${VENV_PATH}
+        RESULT_VARIABLE venv_result
+    )
+
+    if(venv_result)
+        message(FATAL_ERROR "Failed to create virtual environment")
+    endif()
+
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -E env "PATH=${VENV_PATH}/bin:$ENV{PATH}" pip install numpy scipy scikit-learn
+        RESULT_VARIABLE pip_result
+    )
+
+    if(pip_result)
+        message(FATAL_ERROR "Failed to install scikit-learn")
+    endif()
 endif()
 
-execute_process(
-    COMMAND ${CMAKE_COMMAND} -E env "PATH=${KOCCHI_BINARY_DIR}/${venv_name}/bin:$ENV{PATH}" pip install numpy scipy scikit-learn
-    RESULT_VARIABLE pip_result
-)
-
-if(pip_result)
-    message(FATAL_ERROR "Failed to install scikit-learn")
-endif()
+message(STATUS "[VENV] ${VENV_NAME} installed")
 
 file(MAKE_DIRECTORY ${KOCCHI_BINARY_DIR}/modules/)
 message(STATUS "Copying ${PROJECT_SOURCE_DIR}/modules/tokenizer.py")
