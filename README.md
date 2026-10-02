@@ -74,7 +74,7 @@ CMake creates a **virtualenv in the build directory at configure time** (numpy, 
 
 ## Testing with the 20newsgroups fixture
 
-`modules/tokenizer.py` builds a 1,000-feature `CountVectorizer` matrix from scikit-learn's 20newsgroups dataset, transposes it and writes `input.npy` + `labels.txt`. It was used to validate the C++ path before real data.
+`modules/tokenizer.py` is only a **test fixture**; the real tokenizer is `pkg/common/pylib/tokenizer.py` in [topicz-scrapper](https://github.com/m-bou/topicz-scrapper), which also writes a `vocabulary.npy` (same words as `labels.txt`, unused by the C++ side). It builds a 1,000-feature `CountVectorizer` matrix from scikit-learn's 20newsgroups dataset, transposes it and writes `input.npy` + `labels.txt`. It was used to validate the C++ path before real data.
 
 ## Status
 
