@@ -1,5 +1,7 @@
 # kocchi-classify
 
+> ⚠️ **Deprecated, not used in production.** This classifier is **not** what powers the current version of Kocchi. It is a historical project from 2023–2024, kept public only to show the approach I took back then (the crawl, the topic-modelling funnel and the engineering trade-offs). It is no longer maintained, the Instagram endpoints it depends on no longer work, and the current Kocchi uses a different, newer implementation.
+
 A C++20 **Latent Dirichlet Allocation (LDA)** trainer used to classify Instagram profiles by topic. It is **stage 4** of the [Topicz](https://github.com/m-bou/topicz-scrapper) funnel (discover → crawl → heuristic gate → **classify** → shortlist) and is included in topicz-scrapper as a submodule at `pkg/kocchi-classify`.
 
 - Project story and numbers: [topicz-scrapper README](https://github.com/m-bou/topicz-scrapper#readme)
