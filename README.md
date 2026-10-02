@@ -97,3 +97,7 @@ cmake/                Find modules (Docopt, Eigen3, LDA++, BashCompletion)
 ```
 
 Related: [topicz-scrapper](https://github.com/m-bou/topicz-scrapper) · [kocchi-lda](https://github.com/m-bou/kocchi-lda).
+
+## License
+
+MIT, see [LICENSE](LICENSE).
